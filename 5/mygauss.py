@@ -53,3 +53,23 @@ def gauss(mat, f, perm_func = perm_vh):
 		x[i] = (f[i] - to_right)/mat[i][i]
 	px = x_after_p(x, p)
 	return px
+
+def matrix_inverse(matrix):
+    n = len(matrix)
+
+    identity_matrix = [[1 if i == j else 0 for j in range(n)] for i in range(n)]
+
+    for col in range(n):
+        pivot = matrix[col][col]
+        for j in range(n):
+            matrix[col][j] /= pivot
+            identity_matrix[col][j] /= pivot
+
+        for i in range(n):
+            if i != col:
+                factor = matrix[i][col]
+                for j in range(n):
+                    matrix[i][j] -= factor * matrix[col][j]
+                    identity_matrix[i][j] -= factor * identity_matrix[col][j]
+    
+    return identity_matrix

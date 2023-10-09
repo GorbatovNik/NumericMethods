@@ -1,6 +1,5 @@
 import numpy as np
 import mygauss
-from sympy import *
 
 EPS = 1e-9
 
@@ -49,7 +48,7 @@ while len(pol) > 1:
 vecs = []
 for k, l in enumerate(lambdas):
 	print('lambda ' + str(k) + ' = ' + str(l))
-	b = ones(n)
+	b = np.ones(n)
 	for i in range(1, n):
 		b[i] = b[i - 1] * l - p[i - 1]
 	x = np.sum([b[i] * C[n - i - 1] for i in range(n)], axis=0) # вычисляем собственный вектор x
